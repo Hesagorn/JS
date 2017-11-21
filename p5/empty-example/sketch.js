@@ -1,11 +1,16 @@
+var a = 0;
+
 function setup() {
-  // put setup code here
   createCanvas(1280, 720);
 }
 
 function draw() {
-  background(100);
+  background(50);
 
-  fill(200, 100, 50);
-  rect(100, 200, 75, 150);
+  if(a > 720){
+    a = -10;
+  }
+  fill(255);
+  rect(300, a, 600, 20);
+  a = a+10;
 }
