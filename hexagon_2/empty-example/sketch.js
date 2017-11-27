@@ -2,12 +2,15 @@ let punti1x = [];
 let punti1y = [];
 let punti2x = [];
 let punti2y = [];
-let x = 0, y = 0;
+let speed = 0, speed2 = 0, speed3 = 0;
+let x1 = 1000, x2 = 1000, x3 = 1000;
+let y1 = 1050, y2 = 1050, y3 = 1000;
 
 function setup() {
   canvas = createCanvas(windowWidth, windowHeight);
-  poligono1 = new poligono(70, 6);
+  poligono1 = new poligono(90, 6);
   poligono2 = new poligono(2000, 6);
+
 
 /*  muro1.vertici1();
   muro1.vertici2();
@@ -27,91 +30,77 @@ function setup() {
 
 function draw() {
   poligono2.forma();
-  background(150);
+  background(130);
   poligono2.forma2();
+  muro1 = new muro(x1 - speed, y1 - speed, 6);
+  muro2 = new muro(x2 - speed2, y2 - speed2, 6);
+  muro3 = new muro(x3 - speed3, y3 - speed3, 6);
+  hexagon1();
 
-  x = x + 2;
-  y = y + 2;
-  muro1 = new muro(500 - x, 530 - y, 6, 0);
-  trapezio1();
-  trapezio2();
-  trapezio3();
-  trapezio4();
-  trapezio5();
-  trapezio6();
   poligono1.forma();
 }
 
-function trapezio3() {
-    muro1.vertici1();
-    muro1.vertici2();
-    fill(255, 0, 255);
-    beginShape();
-    vertex(punti1x[1], punti1y[1]);
-    vertex(punti1x[2], punti1y[2]);
-    vertex(punti2x[2], punti2y[2]);
-    vertex(punti2x[1], punti2y[1]);
-    endShape(CLOSE);
+function hexagon1() {
+  speed = speed + 6;
+  muro1.vertici1();
+  muro1.vertici2();
+  trapezi(1);
+  trapezi(3);
+  trapezi(4);
+  if(speed>=300) {
+    hexagon1_2();
+  }
+  if(speed>=1000) {
+    speed = speed - 6;
+  }
+}
+function hexagon1_2() {
+  speed2 = speed2 + 6;
+  muro2.vertici1();
+  muro2.vertici2();
+  trapezi(3);
+  trapezi(5);
+  trapezi(6);
+  if(speed2>=300) {
+    hexagon1_3();
+  }
+  if(speed2>=1000) {
+    speed2 = speed2 - 6;
+  }
 }
 
-function trapezio4() {
-    muro1.vertici1();
-    muro1.vertici2();
-    fill(255, 0, 255);
-    beginShape();
-    vertex(punti1x[2], punti1y[2]);
-    vertex(punti1x[3], punti1y[3]);
-    vertex(punti2x[3], punti2y[3]);
-    vertex(punti2x[2], punti2y[2]);
-    endShape(CLOSE);
+function hexagon1_3() {
+  speed3 = speed3 + 6;
+  muro3.vertici1();
+  muro3.vertici2();
+  trapezi(1);
+  trapezi(3);
+  trapezi(5);
+  if(speed3>=1000) {
+    speed3 = speed3 - 6;
+  }
 }
 
-function trapezio5() {
-    muro1.vertici1();
-    muro1.vertici2();
-    fill(255, 0, 255);
-    beginShape();
-    vertex(punti1x[3], punti1y[3]);
-    vertex(punti1x[4], punti1y[4]);
-    vertex(punti2x[4], punti2y[4]);
-    vertex(punti2x[3], punti2y[3]);
-    endShape(CLOSE);
-}
 
-function trapezio6() {
-    muro1.vertici1();
-    muro1.vertici2();
-    fill(255, 0, 255);
-    beginShape();
-    vertex(punti1x[4], punti1y[4]);
-    vertex(punti1x[5], punti1y[5]);
-    vertex(punti2x[5], punti2y[5]);
-    vertex(punti2x[4], punti2y[4]);
-    endShape(CLOSE);
-}
 
-function trapezio1() {
-    muro1.vertici1();
-    muro1.vertici2();
-    fill(255, 0, 255);
-    beginShape();
-    vertex(punti1x[5], punti1y[5]);
-    vertex(punti1x[6], punti1y[6]);
-    vertex(punti2x[6], punti2y[6]);
-    vertex(punti2x[5], punti2y[5]);
-    endShape(CLOSE);
-}
 
-function trapezio2() {
-    muro1.vertici1();
-    muro1.vertici2();
-    fill(255, 0, 255);
+function trapezi(m) {
+
+  fill(240);
+  if (m==6){
     beginShape();
-    vertex(punti1x[6], punti1y[6]);
+    vertex(punti1x[m], punti1y[m]);
     vertex(punti1x[1], punti1y[1]);
     vertex(punti2x[1], punti2y[1]);
-    vertex(punti2x[6], punti2y[6]);
+    vertex(punti2x[m], punti2y[m]);
     endShape(CLOSE);
+  }
+  beginShape();
+  vertex(punti1x[m], punti1y[m]);
+  vertex(punti1x[m+1], punti1y[m+1]);
+  vertex(punti2x[m+1], punti2y[m+1]);
+  vertex(punti2x[m], punti2y[m]);
+  endShape(CLOSE);
 }
 
 class poligono {
@@ -130,7 +119,7 @@ class poligono {
     //translate(width/2, height/2);
     fill(100);
     stroke(220);
-    strokeWeight(5);
+    strokeWeight(7);
     beginShape();
     for(let a=0; a<TWO_PI; a += angle) {
       this.sx2 = this.sx;
@@ -164,11 +153,10 @@ class poligono {
 
 
 class muro {
-  constructor(r, r2, l, v, sx, sy, sx2, sy2) {
+  constructor(r, r2, l, sx, sy, sx2, sy2) {
     this.r = r;
     this.r2 = r2;
     this.l = l;
-    this.v = v;
     this.sx = sx;
     this.sy = sy;
     this.sx2 = sx2;
@@ -204,6 +192,6 @@ class muro {
         this.sx = x + cos(a) * this.r2;
         this.sy = y + sin(a) * this.r2;
         n++;
-      }
+        }
   }
 }
