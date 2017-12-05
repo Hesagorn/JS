@@ -32,7 +32,16 @@ function draw() {
   poligono2.forma();
   background(130);
   poligono2.forma2();
-  //let speed = 0, speed2 = 0, speed3 = 0;
+  if(speed >= 1000){
+    speed = 0;
+  }
+  if(speed2 >= 1000){
+    speed2 = 0;
+  }
+  if(speed3 >= 1000){
+    speed3 = 0;
+  }
+  
   muro1 = new muro(x1 - speed, y1 - speed, 6);
   muro2 = new muro(x2 - speed2, y2 - speed2, 6);
   muro3 = new muro(x3 - speed3, y3 - speed3, 6);
