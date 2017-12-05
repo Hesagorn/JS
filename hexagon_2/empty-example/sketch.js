@@ -4,7 +4,7 @@ let punti2x = [];
 let punti2y = [];
 let speed = 0, speed2 = 0, speed3 = 0;
 let x1 = 1000, x2 = 1000, x3 = 1000;
-let y1 = 1050, y2 = 1050, y3 = 1000;
+let y1 = 1050, y2 = 1050, y3 = 1050;
 
 function setup() {
   canvas = createCanvas(windowWidth, windowHeight);
@@ -32,6 +32,7 @@ function draw() {
   poligono2.forma();
   background(130);
   poligono2.forma2();
+  let speed = 0, speed2 = 0, speed3 = 0;
   muro1 = new muro(x1 - speed, y1 - speed, 6);
   muro2 = new muro(x2 - speed2, y2 - speed2, 6);
   muro3 = new muro(x3 - speed3, y3 - speed3, 6);
