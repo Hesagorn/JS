@@ -60,9 +60,9 @@ function hexagon1() {
   if(speed>=300) {
     hexagon1_2();
   }
-  if(speed>=1000) {
+  /*if(speed>=1000) {
     speed = speed - 6;
-  }
+  }*/
 }
 function hexagon1_2() {
   speed2 = speed2 + 6;
@@ -74,9 +74,9 @@ function hexagon1_2() {
   if(speed2>=300) {
     hexagon1_3();
   }
-  if(speed2>=1000) {
+  /*if(speed2>=1000) {
     speed2 = speed2 - 6;
-  }
+  }*/
 }
 
 function hexagon1_3() {
@@ -86,9 +86,9 @@ function hexagon1_3() {
   trapezi(1);
   trapezi(3);
   trapezi(5);
-  if(speed3>=1000) {
+  /*if(speed3>=1000) {
     speed3 = speed3 - 6;
-  }
+  }*/
 }
 
 
